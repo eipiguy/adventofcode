@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
                 std::string line;
                 std::string preamble;
 
-                int keynum, min, max, pos;
+                int i1, i2, pos;
                 char key;
                 char delim = ':';
 
@@ -29,30 +29,30 @@ int main(int argc, char* argv[]){
                         
                         delim = '-';
                         pos = preamble.find(delim);
-                        min = std::stoi( preamble.substr(0,pos) );
+                        i1 = std::stoi( preamble.substr(0,pos) );
                         preamble.erase(0,pos+1);
-                        std::cout << min << '-';
+                        std::cout << i1 << '-';
 
                         delim = ' ';
                         pos = preamble.find(delim);
-                        max = std::stoi( preamble.substr(0,pos) );
+                        i2 = std::stoi( preamble.substr(0,pos) );
                         preamble.erase(0,pos+1);
-                        std::cout << max << ' ';
+                        std::cout << i2 << ' ';
 
                         key = preamble[0];
                         std::cout << key << '\n';
 
                         std::cout << line;
                         
-                        keynum=0;
-                        for(int i=0;i<line.size();++i){
-                                if(line[i]==key) ++keynum;
-                        }
-                        if( (keynum >= min) && (keynum <= max) ){
-                                std::cout << ' ' << keynum << " valid\n";
-                                ++valid;
+                        if( (line[i1-1] == key) || (line[i2-1] == key) ){
+                                if( (line[i1-1] != key) || (line[i2-1] != key) ){
+                                        std::cout << " valid\n";
+                                        ++valid;
+                                }else{
+                                        std::cout << " not valid\n";
+                                }
                         }else{
-                                std::cout << ' ' << keynum << " not valid\n";
+                                std::cout << " not valid\n";
                         }
 
                         ++total; 
