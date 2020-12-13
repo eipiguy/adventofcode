@@ -19,4 +19,6 @@ def get_valid_containers(targets: set, container_map: dict) -> set:
     return get_valid_containers(targets.union(res), container_map)
 
 valid_containers = get_valid_containers({'shiny gold'}, bag_map)
-print(len(valid_containers))
+
+if __name__ == '__main__':
+    print(len(valid_containers))
